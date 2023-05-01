@@ -14,7 +14,7 @@ val soraSemiBold = Font(R.font.sora_semibold, FontWeight.SemiBold)
 val soraFontFamily = FontFamily(listOf(sora, soraSemiBold))
 
 @Immutable
-data class BrickboardTypography(
+data class CustomTypography(
     val alarmTitle: TextStyle,
     val largeTitle: TextStyle,
     val title1: TextStyle,
@@ -27,8 +27,7 @@ data class BrickboardTypography(
     val footnote: TextStyle
 )
 
-// Set of Material typography styles to start with
-val Typography = BrickboardTypography(
+val BrickboardTypography = CustomTypography(
     alarmTitle = TextStyle(
         fontSize = 34.sp,
         fontFamily = soraFontFamily,
