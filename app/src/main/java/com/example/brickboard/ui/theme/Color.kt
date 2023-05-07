@@ -1,5 +1,8 @@
 package com.example.brickboard.ui.theme
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 
 val brickBoardBlue = Color(0xFF1B60D1)
@@ -24,3 +27,74 @@ val brickBoardDarkBackground = Color(0xFF161314)
 val onBrickBoardDarkBackground = Color(0xFFFFFFFF)
 val brickBoardDarkSurface = Color(0xFF262628)
 val onBrickBoardDarkSurface = Color(0xFFFFFFFF)
+
+class BrickboardColours(
+    primary: Color,
+    primaryVariant: Color,
+    secondary: Color,
+    background: Color,
+    surface: Color,
+    onPrimary: Color,
+    onSecondary: Color,
+    onBackground: Color,
+    onSurface: Color,
+    isLight: Boolean
+){
+    var primary by mutableStateOf(primary)
+        internal set
+    var primaryVariant by mutableStateOf(primaryVariant)
+        internal set
+    var secondary by mutableStateOf(secondary)
+        internal set
+    var background by mutableStateOf(background)
+        internal set
+    var surface by mutableStateOf(surface)
+        internal set
+    var onPrimary by mutableStateOf(onPrimary)
+        internal set
+    var onSecondary by mutableStateOf(onSecondary)
+        internal set
+    var onBackground by mutableStateOf(onBackground)
+        internal set
+    var onSurface by mutableStateOf(onSurface)
+        internal set
+    var isLight by mutableStateOf(isLight)
+        internal set
+
+    fun copy(
+        primary: Color = this.primary,
+        primaryVariant: Color = this.primaryVariant,
+        secondary: Color = this.secondary,
+        background: Color = this.background,
+        surface: Color = this.surface,
+        onPrimary : Color = this.onPrimary,
+        onSecondary : Color = this.onSecondary,
+        onBackground: Color = this.onBackground,
+        onSurface: Color = this.onSurface,
+        isLight: Boolean = this.isLight,
+    ) = BrickboardColours(
+        primary,
+        primaryVariant,
+        secondary,
+        background,
+        surface,
+        onPrimary,
+        onSecondary,
+        onBackground,
+        onSurface,
+        isLight
+    )
+    fun updateColorsFrom(other: BrickboardColours) {
+        primary = other.primary
+        primaryVariant= other.primaryVariant
+        secondary = other.secondary
+        background = other.background
+        surface= other.surface
+        onPrimary = other.onPrimary
+        onSecondary = other.onSecondary
+        onBackground= other.onBackground
+        onSurface= other.onSurface
+        isLight = other.isLight
+    }
+
+}
