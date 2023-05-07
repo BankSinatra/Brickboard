@@ -1,6 +1,8 @@
 package com.example.brickboard.ui.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -25,14 +26,19 @@ import androidx.compose.ui.unit.dp
 import com.example.brickboard.destinations.BottomNavDestination
 import com.example.brickboard.ui.theme.BrickboardTheme
 import com.example.brickboard.ui.theme.accent30
+import com.example.brickboard.ui.theme.accent40
 import com.example.brickboard.ui.theme.brickBoardBlue
+import com.example.brickboard.ui.theme.onBrickBoardDarkSurface
 
 @Composable
 fun BottomNavItem(
     navDestination: BottomNavDestination,
     selected: Boolean,
-    onSelected: () -> Unit
+    onSelected: () -> Unit,
+    darkTheme: Boolean = false
 ){
+    val unselectedTint = if (darkTheme) accent40 else accent30
+    val selectedTint = if (darkTheme) onBrickBoardDarkSurface else brickBoardBlue
     Column(
         modifier = Modifier
             .height(64.dp)
@@ -51,12 +57,12 @@ fun BottomNavItem(
         Icon(
             painter = painterResource(id = navDestination.icon),
             contentDescription = navDestination.label,
-            tint = if(selected) brickBoardBlue else accent30
+            tint = if(selected) selectedTint  else unselectedTint
         )
         Text(
             text = navDestination.label,
             style = BrickboardTheme.typography.footnote,
-            color = if(selected) brickBoardBlue else accent30
+            color = if(selected) selectedTint else unselectedTint
         )
     }
 }
@@ -65,9 +71,10 @@ fun BottomNavItem(
 fun BottomNavigationBar(
     navDestinations: List<BottomNavDestination>,
     onTabSelected: (BottomNavDestination) -> Unit,
-    currentTab: BottomNavDestination
+    currentTab: BottomNavDestination,
+    isDark: Boolean
 ){
-    Surface(
+    BbSurface(
         modifier = Modifier
             .height(80.dp)
             .fillMaxWidth()
@@ -81,7 +88,8 @@ fun BottomNavigationBar(
                 BottomNavItem(
                     navDestination = bottomNavDestination,
                     selected = currentTab == bottomNavDestination,
-                    onSelected = {onTabSelected(bottomNavDestination)}
+                    onSelected = {onTabSelected(bottomNavDestination)},
+                    isDark
                 )
             }
 
@@ -89,7 +97,9 @@ fun BottomNavigationBar(
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true,
+    uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL
+)
 @Composable
 fun BottomNavBarPreview() {
     BrickboardTheme {
@@ -99,7 +109,8 @@ fun BottomNavBarPreview() {
                 BottomNavDestination.CollectionNavItem,
                 BottomNavDestination.ProfileNavItem),
             onTabSelected = {},
-            currentTab = BottomNavDestination.CollectionNavItem
+            currentTab = BottomNavDestination.CollectionNavItem,
+            isSystemInDarkTheme()
         )
     }
 }
