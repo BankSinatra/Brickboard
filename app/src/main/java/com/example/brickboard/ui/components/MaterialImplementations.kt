@@ -2,12 +2,15 @@ package com.example.brickboard.ui.components
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Surface
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.compositeOver
+import androidx.compose.ui.unit.dp
 import com.example.brickboard.ui.theme.BrickboardTheme
 
 @Composable
@@ -26,7 +29,7 @@ fun BbButton(
             disabledContentColor = BrickboardTheme.colours.onPrimary
                 .copy(alpha = 0.50f)
         ),
-        shape = ButtonShape,
+        shape = RoundedCornerShape(2.dp),
         onClick = onClick,
         modifier = modifier,
         content = {
@@ -39,4 +42,22 @@ fun BbButton(
     )
 }
 
-val ButtonShape = RoundedCornerShape(percent = 50)
+@Composable
+fun BbSurface(
+    modifier: Modifier = Modifier,
+    color: Color = BrickboardTheme.colours.surface,
+    content: @Composable ()->Unit
+){
+    Surface(
+        modifier = modifier,
+        color = color,
+        contentColor = BrickboardTheme.colours.contentColorFor(color),
+        content = {
+            ProvideTextStyle(
+                value = BrickboardTheme.typography.body
+            ) {
+                content()
+            }
+        }
+    )
+}

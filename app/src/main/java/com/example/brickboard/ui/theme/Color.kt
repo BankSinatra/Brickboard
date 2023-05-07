@@ -97,4 +97,15 @@ class BrickboardColours(
         isLight = other.isLight
     }
 
+    fun contentColorFor(backgroundColor: Color): Color {
+        return when (backgroundColor) {
+            primary -> onPrimary
+            primaryVariant -> onPrimary
+            secondary -> onSecondary
+            background -> onBackground
+            surface -> onSurface
+            else -> Color.Unspecified
+        }
+    }
+
 }
