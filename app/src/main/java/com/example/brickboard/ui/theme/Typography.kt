@@ -14,66 +14,53 @@ val soraSemiBold = Font(R.font.sora_semibold, FontWeight.SemiBold)
 val soraFontFamily = FontFamily(listOf(sora, soraSemiBold))
 
 @Immutable
-data class CustomTypography(
-    val alarmTitle: TextStyle,
-    val largeTitle: TextStyle,
-    val title1: TextStyle,
-    val title2: TextStyle,
-    val title3: TextStyle,
-    val headline: TextStyle,
-    val body: TextStyle,
-    val callout: TextStyle,
-    val subHead: TextStyle,
-    val footnote: TextStyle
-)
-
-val BrickboardTypography = CustomTypography(
-    alarmTitle = TextStyle(
+data class BrickboardTypography(
+    val alarmTitle: TextStyle = TextStyle(
         fontSize = 34.sp,
         fontFamily = soraFontFamily,
         fontWeight = soraSemiBold.weight
     ),
-    largeTitle = TextStyle(
+    val largeTitle: TextStyle = TextStyle(
         fontSize = 34.sp,
         fontFamily = soraFontFamily,
         fontWeight = sora.weight
     ),
-    title1 = TextStyle(
+    val title1: TextStyle = TextStyle(
         fontSize = 28.sp,
         fontFamily = soraFontFamily,
         fontWeight = sora.weight
     ),
-    title2 = TextStyle(
+    val title2: TextStyle = TextStyle(
         fontSize = 22.sp,
         fontFamily = soraFontFamily,
         fontWeight = sora.weight
     ),
-    title3 = TextStyle(
+    val title3: TextStyle = TextStyle(
         fontSize = 20.sp,
         fontFamily = soraFontFamily,
         fontWeight = sora.weight
     ),
-    headline = TextStyle(
+    val headline: TextStyle = TextStyle(
         fontSize = 17.sp,
         fontFamily = soraFontFamily,
         fontWeight = soraSemiBold.weight
     ),
-    body = TextStyle(
+    val body: TextStyle = TextStyle(
         fontSize = 17.sp,
         fontFamily = soraFontFamily,
         fontWeight = sora.weight
     ),
-    callout = TextStyle(
+    val callout: TextStyle = TextStyle(
         fontSize = 16.sp,
         fontFamily = soraFontFamily,
         fontWeight = sora.weight
     ),
-    subHead = TextStyle(
+    val subHead: TextStyle = TextStyle(
         fontSize = 15.sp,
         fontFamily = soraFontFamily,
         fontWeight = sora.weight
     ),
-    footnote = TextStyle(
+    val footnote: TextStyle = TextStyle(
         fontSize = 13.sp,
         fontFamily = soraFontFamily,
         fontWeight = sora.weight
