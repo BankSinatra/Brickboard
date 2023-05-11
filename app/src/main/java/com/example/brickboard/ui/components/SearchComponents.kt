@@ -65,7 +65,7 @@ fun ThemeGridItemPreview(){
     BrickboardTheme() {
         ThemeGridItem(
             title = "Star Wars™",
-            imageResource = R.drawable.starwars_themeicon
+            imageResource = R.drawable.themeicon_starwars
         )
     }
 }
