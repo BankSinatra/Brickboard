@@ -31,7 +31,9 @@ class NavigationBarTest {
                     onTabSelected = {
                                     state = it
                     },
-                    currentTab = state)
+                    currentTab = state,
+                    false
+                )
             }
         }
         composeTestRule.onNodeWithContentDescription("Profile").performClick()

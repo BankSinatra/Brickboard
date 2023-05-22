@@ -4,12 +4,16 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Surface
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.brickboard.destinations.BottomNavDestination
+import com.example.brickboard.ui.components.BottomNavigationBar
+import com.example.brickboard.ui.components.SearchTopAppBar
+import com.example.brickboard.ui.screens.search.SearchRoot
 import com.example.brickboard.ui.theme.BrickboardTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,11 +21,20 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             BrickboardTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Greeting("Android")
+                Scaffold(
+                    topBar = {SearchTopAppBar()},
+                    bottomBar = { BottomNavigationBar(
+                        navDestinations = listOf(
+                            BottomNavDestination.SearchNavItem,
+                            BottomNavDestination.CollectionNavItem,
+                            BottomNavDestination.ProfileNavItem),
+                        onTabSelected = {},
+                        currentTab = BottomNavDestination.SearchNavItem,
+                        isSystemInDarkTheme()
+                    )},
+                    backgroundColor = BrickboardTheme.colours.background
+                ){ innerPadding ->
+                    SearchRoot(innerPadding)
                 }
             }
         }
